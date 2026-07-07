@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ bin.title }}
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ bin.title }}</h1>
+
+<p>
+    <strong>Location:</strong>
+    {{ bin.location }}
+</p>
+
+<p>
+    {{ bin.description }}
+</p>
+
+<h2>Contents</h2>
+
+<ul>
+
+{% for item in items %}
+
+<li>
+
+{{ item.quantity }} × {{ item.name }}
+
+</li>
+
+{% else %}
+
+<li>No items in this bin.</li>
+
+{% endfor %}
+
+</ul>
+
+{% endblock %}
