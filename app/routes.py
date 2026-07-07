@@ -47,3 +47,7 @@ def bin_details(bin_id):
         bin=bin,
         items=items
     )
+
+@main.route("/")
+def index():
+    return render_template("index.html")
