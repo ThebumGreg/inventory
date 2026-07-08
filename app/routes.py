@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 
 #from app.database import get_db
 from app.services.bin_service import *
@@ -30,9 +30,11 @@ def bin_details(bin_id):
 def index():
     return render_template("index.html")
 
-@main.route("/bin/new")
+@main.route("/bin/new", methods=["GET","POST"])
 def new_bin():
-    return render_template("new_bin.html")
 
-#@main.route("/bin/new", methods=["GET","POST"])
-#def new_bin():
+    if request.method == 'GET':
+        return render_template("new_bin.html")
+    
+    if request.method == 'POST':
+        return render_template("index.html")
