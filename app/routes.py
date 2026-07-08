@@ -1,21 +1,14 @@
 from flask import Blueprint, render_template
 
-from app.database import get_db
+#from app.database import get_db
+from app.services.bin_service import *
 
 main = Blueprint("main", __name__)
 
 @main.route("/bins")
-def bins():
+def List_bins():
 
-    conn = get_db()
-
-    bins = conn.execute("""
-        SELECT *
-        FROM bins
-        ORDER BY id
-    """).fetchall()
-
-    conn.close()
+    bins = get_all_bins()
 
     return render_template(
         "bins.html",
@@ -25,22 +18,7 @@ def bins():
 @main.route("/bin/<int:bin_id>")
 def bin_details(bin_id):
 
-    conn = get_db()
-
-    bin = conn.execute("""
-        SELECT *
-        FROM bins
-        WHERE id = ?
-    """, (bin_id,)).fetchone()
-
-    items = conn.execute("""
-        SELECT *
-        FROM items
-        WHERE bin_id = ?
-        ORDER BY name
-    """, (bin_id,)).fetchall()
-
-    conn.close()
+    bin, items = get_bin_details(bin_id)
 
     return render_template(
         "bin.html",
@@ -51,3 +29,10 @@ def bin_details(bin_id):
 @main.route("/")
 def index():
     return render_template("index.html")
+
+@main.route("/bin/new")
+def new_bin():
+    return render_template("new_bin.html")
+
+#@main.route("/bin/new", methods=["GET","POST"])
+#def new_bin():
