@@ -59,7 +59,8 @@ def update_bin(bin_id, title, location, description):
         SET
             title = ?,
             location = ?,
-            description =?
+            description = ?,
+            updated_at = CURRENT_TIMESTAMP
         Where 
             id = ?
     """, (title, location, description, bin_id))

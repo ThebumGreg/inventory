@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Edit Item</h1>
+
+<form method="POST">
+
+<label>Item Title</Title></label><br>
+<input type="text" name="title" value="{{ item.name }}">
+
+<br><br>
+
+<label>Item quantity</label><br>
+<input type="text" name="location" value="{{ item.quantity }}">
+
+<br><br>
+
+<label>Item Description</label><br>
+<textarea rows="4", name="description">{{ item.notes }}</textarea>
+
+<br><br>
+
+ <button type="submit" class="button">
+    Update item
+</button>
+
+</form>
+
+{% endblock %}

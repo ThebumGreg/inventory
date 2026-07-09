@@ -28,3 +28,20 @@ def create_item(bin_id, item_name, quantity, notes):
 
     return bin_id
 
+
+def get_item(item_id):
+
+    conn = get_db()
+
+    item_detail = conn.execute("""
+        SELECT *
+        FROM items
+        WHERE id = ?
+    """, (item_id,)).fetchone()
+
+
+    conn.commit()
+    conn.close()
+
+    return item_detail
+

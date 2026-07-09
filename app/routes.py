@@ -81,7 +81,18 @@ def edit_bin(bin_id):
         test = update_bin(bin_id, title, location, description)
         return redirect(f"/bin/{bin_id}")
 
+@main.route("/item/<int:item_id>/edit", methods=["GET","POST"])
+def edit_iteam(item_id):
 
+    if request.method == 'GET':
 
+        item_details = get_item(item_id)
+        print(item_details)
 
+        return render_template(
+            "edit_item.html",
+            item=item_details
+        )
         
+    if request.method == 'POST':
+        return render_template("index.html")
