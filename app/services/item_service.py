@@ -13,6 +13,18 @@ def get_items_by_bin(bin_id):
 
     return items
 
+def create_item(bin_id, item_name, quantity, notes):
 
+    conn = get_db()
+    cursor = conn.cursor()
 
+    cursor.execute("""
+        INSERT INTO items (bin_id, name, quantity, notes)
+        values (?, ?, ?, ?)
+    """, (bin_id, item_name, quantity, notes))
+
+    conn.commit()
+    conn.close()
+
+    return bin_id
 

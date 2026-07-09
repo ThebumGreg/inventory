@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>New Item</h1>
+
+<form method="POST">
+
+<label>Item Name</label><br>
+<input type="text" name="item_name">
+
+<br><br>
+
+<label>quantity</label><br>
+<input type="text" name="quantity">
+
+<br><br>
+
+<label>Notes</label><br>
+<textarea rows="4", name="notes"></textarea>
+
+<br><br>
+
+ <button type="submit" class="button">
+    Create Item
+</button>
+
+</form>
+
+{% endblock %}

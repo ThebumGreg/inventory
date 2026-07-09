@@ -10,3 +10,19 @@ nav {
 a {
     text-decoration: none;
 }
+
+.button {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #0078d4;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #005ea6;
+}
