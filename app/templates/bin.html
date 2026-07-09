@@ -37,4 +37,16 @@
 
 </ul>
 
+{% if items %}
+
+<a href="/bin/{{ bin.id }}/item/new" class="button">Add Item</a>
+
+<a href="/bin/{{ bin.id }}/edit" class="button">Edit Bin</a>
+
+{% else %}
+
+<a href="/bin/{{ bin.id }}/item/new" class="button">Add Item</a>
+
+{% end if %}
+
 {% endblock %}
