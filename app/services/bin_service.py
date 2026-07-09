@@ -26,19 +26,28 @@ def get_bin_details(bin_id):
         WHERE id = ?
     """, (bin_id,)).fetchone()
 
-    items = conn.execute("""
-        SELECT *
-        FROM items
-        WHERE bin_id = ?
-        ORDER BY name
-    """, (bin_id,)).fetchall()
-
     conn.close()
 
-    return bin, items
+    return bin
 
 
-#create_bin(...)
+def create_bin(title, location, description):
+
+    conn = get_db()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        INSERT INTO bins (title, location, description)
+        values (?, ?, ?)
+    """, (title, location, description))
+
+    conn.commit()
+
+    bin_id = cursor.lastrowid
+    conn.close()
+
+    return bin_id
+
 
 #update_bin(...)
 

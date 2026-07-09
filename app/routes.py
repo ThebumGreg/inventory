@@ -1,7 +1,9 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect
 
 #from app.database import get_db
 from app.services.bin_service import *
+from app.services.item_service import *
+
 
 main = Blueprint("main", __name__)
 
@@ -18,7 +20,8 @@ def List_bins():
 @main.route("/bin/<int:bin_id>")
 def bin_details(bin_id):
 
-    bin, items = get_bin_details(bin_id)
+    bin = get_bin_details(bin_id)
+    items = get_items_by_bin(bin_id)
 
     return render_template(
         "bin.html",
@@ -37,4 +40,9 @@ def new_bin():
         return render_template("new_bin.html")
     
     if request.method == 'POST':
-        return render_template("index.html")
+        title = request.form["title"]
+        location = request.form["location"]
+        description = request.form["description"]
+        bin_id = create_bin(title, location, description)
+        return redirect(f"/bin/{bin_id}")
+        
