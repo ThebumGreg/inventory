@@ -95,4 +95,11 @@ def edit_iteam(item_id):
         )
         
     if request.method == 'POST':
+
+        action = request.form["action"]
+
+        if action == "update":
+
+
+        elif action == "delete":
         return render_template("index.html")

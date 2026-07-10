@@ -4,8 +4,6 @@
 
 <h1>Edit Item</h1>
 
-<form method="POST">
-
 <label>Item Title</Title></label><br>
 <input type="text" name="title" value="{{ item.name }}">
 
@@ -21,10 +19,21 @@
 
 <br><br>
 
- <button type="submit" class="button">
+<form method="POST">
+
+ <button type="submit" class="button" name="action" value="update">
     Update item
 </button>
 
 </form>
+
+<form method="POST"></form>
+
+ <button type="submit" class="button" name="action" value="delete">
+    Delete item
+</button>
+
+</form>
+
 
 {% endblock %}
