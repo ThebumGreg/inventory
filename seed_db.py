@@ -13,7 +13,7 @@ cursor = conn.cursor()
 #""")
 
 cursor.execute("""
-INSERT INTO items (bin_id, name, quantity)
+INSERT INTO items (bin_id, item_name, quantity)
 VALUES
 (1,'Tent',1),
 (1,'Lantern',2),

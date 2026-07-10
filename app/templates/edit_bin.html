@@ -7,7 +7,7 @@
 <form method="POST">
 
 <label>Bin Title</Title></label><br>
-<input type="text" name="title" value="{{ bin.title }}">
+<input type="text" name="bin_name" value="{{ bin.name }}">
 
 <br><br>
 
@@ -21,10 +21,19 @@
 
 <br><br>
 
- <button type="submit" class="button">
+ <button type="submit" class="button" name="action" value="update">
     Update Bin
 </button>
 
 </form>
+
+<form method="POST">
+
+ <button type="submit" class="button" name="action" value="delete" onclick="return confirm('Delete this Bin?');">
+    Delete Bin
+</button>
+
+</form>
+
 
 {% endblock %}

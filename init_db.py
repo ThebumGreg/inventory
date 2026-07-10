@@ -13,9 +13,11 @@ cursor = conn.cursor()
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS bins (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
+    bin_name TEXT NOT NULL,
     location TEXT,
     description TEXT,
+    photo_filename TEXT,
+    qr_code TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
@@ -26,10 +28,14 @@ cursor.execute("""
 CREATE TABLE IF NOT EXISTS items (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     bin_id INTEGER NOT NULL,
-    name TEXT NOT NULL,
+    item_name TEXT NOT NULL,
     quantity INTEGER DEFAULT 1,
     notes TEXT,
-    FOREIGN KEY(bin_id) REFERENCES bins(id)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(bin_id) 
+        REFERENCES bins(id)
+        ON DELETE CASCADE
 )
 """)
 

@@ -31,15 +31,15 @@ def get_bin_details(bin_id):
     return bin
 
 
-def create_bin(title, location, description):
+def create_bin(bin_name, location, description):
 
     conn = get_db()
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO bins (title, location, description)
+        INSERT INTO bins (bin_name, location, description)
         values (?, ?, ?)
-    """, (title, location, description))
+    """, (bin_name, location, description))
 
     conn.commit()
 
@@ -49,7 +49,7 @@ def create_bin(title, location, description):
     return bin_id
 
 
-def update_bin(bin_id, title, location, description):
+def update_bin(bin_id, bin_name, location, description):
 
     conn = get_db()
     cursor = conn.cursor()
@@ -57,17 +57,33 @@ def update_bin(bin_id, title, location, description):
     cursor.execute("""
         UPDATE bins
         SET
-            title = ?,
+            bin_name = ?,
             location = ?,
             description = ?,
             updated_at = CURRENT_TIMESTAMP
         Where 
             id = ?
-    """, (title, location, description, bin_id))
+    """, (bin_name, location, description, bin_id))
 
     conn.commit()
     conn.close()
     return
 
-#delete_bin(...)
+def delete_bin(bin_id):
 
+    conn = get_db()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        DELETE FROM items
+        Where bin_id = ?
+    """, (bin_id,))
+
+    cursor.execute("""
+        DELETE FROM bins
+        Where id = ?
+    """, (bin_id,))
+
+    conn.commit()
+    conn.close()
+    return

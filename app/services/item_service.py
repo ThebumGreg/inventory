@@ -8,7 +8,7 @@ def get_items_by_bin(bin_id):
         SELECT *
         FROM items
         WHERE bin_id = ?
-        ORDER BY name
+        ORDER BY item_name
     """, (bin_id,)).fetchall()
 
     return items
@@ -19,7 +19,7 @@ def create_item(bin_id, item_name, quantity, notes):
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO items (bin_id, name, quantity, notes)
+        INSERT INTO items (bin_id, item_name, quantity, notes)
         values (?, ?, ?, ?)
     """, (bin_id, item_name, quantity, notes))
 
@@ -53,7 +53,7 @@ def update_item(item_name, item_quantity, item_notes, item_id):
     cursor.execute("""
         UPDATE items
         SET
-            name = ?,
+            item_name = ?,
             quantity = ?,
             notes = ?
         Where 

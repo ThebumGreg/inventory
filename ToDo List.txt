@@ -1,3 +1,5 @@
-Add Options to change, Title, location and Desc of Bins 
-Add Displaying notes of Iteams
-Edit Bin 
+Add Displaying notes of Iteams on Bin Page
+Add Logic to Prevent No name Bins from being Created
+
+
+

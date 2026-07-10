@@ -1,0 +1,21 @@
+#Command to activate venv
+source .venv/bin/activate
+
+#Git Commands 
+
+
+git status
+git add .
+git commit -m "commit"
+git push
+
+git status
+git pull
+
+
+git checkout -b image-upload
+git checkout main
+git merge image-upload
+
+
+

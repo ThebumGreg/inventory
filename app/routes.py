@@ -40,10 +40,10 @@ def new_bin():
         return render_template("new_bin.html")
     
     if request.method == 'POST':
-        title = request.form["title"]
+        bin_name = request.form["bin_name"]
         location = request.form["location"]
         description = request.form["description"]
-        bin_id = create_bin(title, location, description)
+        bin_id = create_bin(bin_name, location, description)
         return redirect(f"/bin/{bin_id}")
 
 
@@ -54,6 +54,7 @@ def new_item(bin_id):
         return render_template("new_item.html")
 
     if request.method == 'POST':
+
         item_name = request.form["item_name"]
         quantity = request.form["quantity"]
         notes = request.form["notes"]
@@ -75,13 +76,27 @@ def edit_bin(bin_id):
         )
     if request.method == 'POST':
 
-        title = request.form["title"]
-        location = request.form["location"]
-        description = request.form["description"]
+        action = request.form["action"]
 
-        update_bin(bin_id, title, location, description)
+        if action == "update":
 
-        return redirect(f"/bin/{bin_id}")
+            bin_name = request.form["bin_name"]
+            location = request.form["location"]
+            description = request.form["description"]
+            update_bin(bin_id, bin_name, location, description)
+            return redirect(f"/bin/{bin_id}")
+
+        if action == "delete":
+
+            delete_bin(bin_id)
+            
+            bins = get_all_bins()
+
+            return render_template(
+            "bins.html",
+            bins=bins
+            )
+
 
 @main.route("/item/<int:item_id>/edit", methods=["GET","POST"])
 def edit_item(item_id):
