@@ -45,3 +45,39 @@ def get_item(item_id):
 
     return item_detail
 
+def update_item(item_name, item_quantity, item_notes, item_id):
+
+    conn = get_db()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        UPDATE items
+        SET
+            name = ?,
+            quantity = ?,
+            notes = ?
+        Where 
+            id = ?
+    """, (item_name, item_quantity, item_notes, item_id))
+
+    conn.commit()
+    conn.close()
+    return
+
+
+def delete_item(item_id):
+
+    conn = get_db()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        DELETE FROM items
+        Where 
+            id = ?
+    """, (item_id,))
+
+    conn.commit()
+    conn.close()
+    return
+
+

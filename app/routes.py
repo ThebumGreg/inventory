@@ -78,7 +78,9 @@ def edit_bin(bin_id):
         title = request.form["title"]
         location = request.form["location"]
         description = request.form["description"]
-        test = update_bin(bin_id, title, location, description)
+
+        update_bin(bin_id, title, location, description)
+
         return redirect(f"/bin/{bin_id}")
 
 @main.route("/item/<int:item_id>/edit", methods=["GET","POST"])
@@ -87,7 +89,6 @@ def edit_iteam(item_id):
     if request.method == 'GET':
 
         item_details = get_item(item_id)
-        print(item_details)
 
         return render_template(
             "edit_item.html",
@@ -97,9 +98,20 @@ def edit_iteam(item_id):
     if request.method == 'POST':
 
         action = request.form["action"]
+        item_details = get_item(item_id)
+        bin_id = item_details["bin_id"]
+
 
         if action == "update":
 
+            item_name = request.form['item_name']
+            item_quantity = request.form['item_quantity']
+            item_notes = request.form['item_notes']
+
+            update_item(item_name, item_quantity, item_notes, item_id)
 
         elif action == "delete":
-        return render_template("index.html")
+
+            delete_item(item_id)
+
+        return redirect(f"/bin/{bin_id}")

@@ -4,34 +4,54 @@
 
 <h1>Edit Item</h1>
 
-<label>Item Title</Title></label><br>
-<input type="text" name="title" value="{{ item.name }}">
-
-<br><br>
-
-<label>Item quantity</label><br>
-<input type="text" name="location" value="{{ item.quantity }}">
-
-<br><br>
-
-<label>Item Description</label><br>
-<textarea rows="4", name="description">{{ item.notes }}</textarea>
-
-<br><br>
-
 <form method="POST">
 
- <button type="submit" class="button" name="action" value="update">
-    Update item
-</button>
+    <label>Item Name</label><br>
+    <input 
+        type="text" 
+        name="item_name" 
+        value="{{ item.name }}"
+    >
+
+    <br><br>
+
+    <label>Item Quantity</label><br>
+    <input 
+        type="number" 
+        name="item_quantity" 
+        value="{{ item.quantity }}"
+    >
+
+    <br><br>
+
+    <label>Item Description</label><br>
+    <textarea 
+        rows="4" 
+        name="item_notes">{{ item.notes }}</textarea>
+
+    <br><br>
+
+    <button 
+        type="submit" 
+        class="button" 
+        name="action" 
+        value="update">
+        Update Item
+    </button>
 
 </form>
 
-<form method="POST"></form>
 
- <button type="submit" class="button" name="action" value="delete">
-    Delete item
-</button>
+<form method="POST">
+
+    <button 
+        type="submit" 
+        class="button" 
+        name="action" 
+        value="delete"
+        onclick="return confirm('Delete this item?');">
+        Delete Item
+    </button>
 
 </form>
 
