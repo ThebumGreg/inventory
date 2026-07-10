@@ -84,7 +84,7 @@ def edit_bin(bin_id):
         return redirect(f"/bin/{bin_id}")
 
 @main.route("/item/<int:item_id>/edit", methods=["GET","POST"])
-def edit_iteam(item_id):
+def edit_item(item_id):
 
     if request.method == 'GET':
 
