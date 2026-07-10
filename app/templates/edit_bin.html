@@ -4,20 +4,29 @@
 
 <h1>Edit Bin</h1>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 
 <label>Bin Title</Title></label><br>
-<input type="text" name="bin_name" value="{{ bin.name }}">
+<input type="text" name="bin_name" required value="{{ bin.name }}">
 
 <br><br>
 
 <label>Bin Location</label><br>
-<input type="text" name="location" value="{{ bin.location }}">
+<input type="text" name="location" required value="{{ bin.location }}">
 
 <br><br>
 
 <label>Bin Description</label><br>
 <textarea rows="4", name="description">{{ bin.description }}</textarea>
+
+<br><br>
+
+<label>Photo</label><br>
+
+<input
+    type="file"
+    name="photo"
+    accept="image/*">
 
 <br><br>
 
@@ -34,6 +43,5 @@
 </button>
 
 </form>
-
 
 {% endblock %}

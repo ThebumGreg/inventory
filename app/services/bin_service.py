@@ -49,21 +49,37 @@ def create_bin(bin_name, location, description):
     return bin_id
 
 
-def update_bin(bin_id, bin_name, location, description):
+def update_bin(bin_id, bin_name, location, description, photo_filename=None):
 
     conn = get_db()
     cursor = conn.cursor()
 
-    cursor.execute("""
-        UPDATE bins
-        SET
-            bin_name = ?,
-            location = ?,
-            description = ?,
-            updated_at = CURRENT_TIMESTAMP
-        Where 
-            id = ?
-    """, (bin_name, location, description, bin_id))
+    if photo_filename:
+
+        cursor.execute("""
+            UPDATE bins
+            SET
+                bin_name = ?,
+                location = ?,
+                description = ?,
+                photo_filename =?,
+                updated_at = CURRENT_TIMESTAMP
+            Where 
+                id = ?
+        """, (bin_name, location, description, photo_filename, bin_id))
+
+    else:
+
+        cursor.execute("""
+            UPDATE bins
+            SET
+                bin_name = ?,
+                location = ?,
+                description = ?,
+                updated_at = CURRENT_TIMESTAMP
+            Where 
+                id = ?
+        """, (bin_name, location, description, bin_id))
 
     conn.commit()
     conn.close()

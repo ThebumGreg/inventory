@@ -39,6 +39,15 @@
 
 {% endfor %}
 
+
+{% if bin.photo_filename %}
+
+<img src="{{ url_for('static', filename='uploads/bins/' ~ bin.photo_filename) }}"
+alt="{{ bin.bin_name }}"
+class="bin-photo">
+
+{% endif %}
+
 </ul>
 
 <a href="/bin/{{ bin.id }}/item/new" class="button">Add Item</a>

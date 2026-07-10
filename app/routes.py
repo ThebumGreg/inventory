@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request, redirect
 
-#from app.database import get_db
 from app.services.bin_service import *
 from app.services.item_service import *
+from app.services.photo_service import *
 
 
 main = Blueprint("main", __name__)
@@ -83,7 +83,17 @@ def edit_bin(bin_id):
             bin_name = request.form["bin_name"]
             location = request.form["location"]
             description = request.form["description"]
-            update_bin(bin_id, bin_name, location, description)
+
+            photo = request.files.get("photo")
+
+            if photo:
+                filename = save_bin_photo(bin_id, photo)
+
+                update_bin(bin_id, bin_name, location, description, filename)
+            
+            else:
+                update_bin(bin_id, bin_name, location, description)
+
             return redirect(f"/bin/{bin_id}")
 
         if action == "delete":

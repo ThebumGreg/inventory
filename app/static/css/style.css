@@ -26,3 +26,9 @@ a {
 .button:hover {
     background-color: #005ea6;
 }
+
+.bin-photo {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 8px;
+}
