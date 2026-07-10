@@ -32,3 +32,46 @@ a {
     width: 100%;
     border-radius: 8px;
 }
+
+
+
+.form-container {
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.bin-photo {
+    display: block;
+    max-width: 300px;
+    margin: 10px 0 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.delete-button {
+    background: #b22222;
+    color: white;
+}

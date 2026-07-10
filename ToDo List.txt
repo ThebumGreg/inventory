@@ -1,6 +1,9 @@
 Add Displaying notes of Iteams on Bin Page
 Add Logic to Prevent No name Bins from being Created
 Add Logic if a bin allready as a photo display on the Edit Bin page and allow to upload of a new photo
+Delete Photos file when a Bin is Deleted 
+Add photo upload to New Bin page
+
 
 
 

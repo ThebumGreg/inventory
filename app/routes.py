@@ -58,7 +58,7 @@ def new_item(bin_id):
         item_name = request.form["item_name"]
         quantity = request.form["quantity"]
         notes = request.form["notes"]
-        test = create_item(bin_id, item_name, quantity, notes)
+        create_item(bin_id, item_name, quantity, notes)
         return redirect(f"/bin/{bin_id}")
 
 @main.route("/bin/<int:bin_id>/edit", methods=["GET","POST"])

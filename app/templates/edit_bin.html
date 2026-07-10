@@ -2,46 +2,80 @@
 
 {% block content %}
 
-<h1>Edit Bin</h1>
+<div class="form-container">
 
-<form method="POST" enctype="multipart/form-data">
+    <h1>Edit Bin</h1>
 
-<label>Bin Title</Title></label><br>
-<input type="text" name="bin_name" required value="{{ bin.name }}">
+    <form method="POST" enctype="multipart/form-data">
 
-<br><br>
+        <div class="form-group">
+            <label for="bin_name">Bin Title</label>
+            <input
+                type="text"
+                id="bin_name"
+                name="bin_name"
+                value="{{ bin.bin_name }}"
+                required>
+        </div>
 
-<label>Bin Location</label><br>
-<input type="text" name="location" required value="{{ bin.location }}">
+        <div class="form-group">
+            <label for="location">Bin Location</label>
+            <input
+                type="text"
+                id="location"
+                name="location"
+                value="{{ bin.location }}"
+                required>
+        </div>
 
-<br><br>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+                id="description"
+                name="description"
+                rows="4">{{ bin.description }}</textarea>
+        </div>
 
-<label>Bin Description</label><br>
-<textarea rows="4", name="description">{{ bin.description }}</textarea>
+        <div class="form-group">
+            <label>Photo</label>
 
-<br><br>
+            {% if bin.photo_filename %}
+                <img
+                    src="{{ url_for('static', filename='uploads/bins/' ~ bin.photo_filename) }}"
+                    alt="{{ bin.bin_name }}"
+                    class="bin-photo">
+            {% endif %}
 
-<label>Photo</label><br>
+            <input
+                type="file"
+                name="photo"
+                accept="image/*">
+        </div>
 
-<input
-    type="file"
-    name="photo"
-    accept="image/*">
+        <button type="submit"
+                class="button"
+                name="action"
+                value="update">
+            Update Bin
+        </button>
 
-<br><br>
+    </form>
 
- <button type="submit" class="button" name="action" value="update">
-    Update Bin
-</button>
+    <hr>
 
-</form>
+    <form method="POST">
 
-<form method="POST">
+        <button
+            type="submit"
+            class="button delete-button"
+            name="action"
+            value="delete"
+            onclick="return confirm('Delete this bin?');">
+            Delete Bin
+        </button>
 
- <button type="submit" class="button" name="action" value="delete" onclick="return confirm('Delete this Bin?');">
-    Delete Bin
-</button>
+    </form>
 
-</form>
+</div>
 
 {% endblock %}

@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<h1>{{ bin.name }}</h1>
+<h1>{{ bin.bin_name }}</h1>
 
 <p>
     <strong>Location:</strong>
@@ -14,6 +14,7 @@
 </p>
 
 <p>
+    <strong>Description:</strong>
     {{ bin.description }}
 </p>
 
@@ -45,6 +46,14 @@
 <img src="{{ url_for('static', filename='uploads/bins/' ~ bin.photo_filename) }}"
 alt="{{ bin.bin_name }}"
 class="bin-photo">
+
+{% else %}
+
+<p>
+
+📦 No Photo Available
+
+</p>
 
 {% endif %}
 

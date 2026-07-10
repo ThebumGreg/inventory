@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Edit Bin</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+<label>Bin Title</Title></label><br>
+<input type="text" name="bin_name" required value="{{ bin.bin_name }}">
+
+<br><br>
+
+<label>Bin Location</label><br>
+<input type="text" name="location" required value="{{ bin.location }}">
+
+<br><br>
+
+<label>Bin Description</label><br>
+<textarea rows="4", name="description">{{ bin.description }}</textarea>
+
+<br><br>
+
+<label>Photo</label><br>
+
+{% if bin.photo_filename %}
+
+<img src="{{ url_for('static', filename='uploads/bins/' ~ bin.photo_filename) }}"
+alt="{{ bin.bin_name }}"
+class="bin-photo">
+
+{% endif %}
+
+<input
+    type="file"
+    name="photo"
+    accept="image/*">
+
+<br><br>
+
+ <button type="submit" class="button" name="action" value="update">
+    Update Bin
+</button>
+
+</form>
+
+<form method="POST">
+
+ <button type="submit" class="button" name="action" value="delete" onclick="return confirm('Delete this Bin?');">
+    Delete Bin
+</button>
+
+</form>
+
+{% endblock %}

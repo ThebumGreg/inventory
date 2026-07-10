@@ -1,4 +1,5 @@
 from app.services.database import get_db
+from app.services.uuid_service import generate_uuid
 
 
 def get_all_bins():
@@ -33,13 +34,15 @@ def get_bin_details(bin_id):
 
 def create_bin(bin_name, location, description):
 
+    qr_code = generate_uuid()
+
     conn = get_db()
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO bins (bin_name, location, description)
-        values (?, ?, ?)
-    """, (bin_name, location, description))
+        INSERT INTO bins (bin_name, location, description, qr_code )
+        values (?, ?, ?, ?)
+    """, (bin_name, location, description, qr_code))
 
     conn.commit()
 
