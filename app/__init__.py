@@ -11,10 +11,23 @@ def create_app():
     "bins"
     )
 
+    app.config["WORKLOG_UPLOAD_FOLDER"] = os.path.join(
+    app.static_folder,
+        "uploads",
+        "worklog"
+    )
+
+
+
     app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024
 
     os.makedirs(
         app.config["UPLOAD_FOLDER"],
+        exist_ok=True
+    )
+
+    os.makedirs(
+        app.config["WORKLOG_UPLOAD_FOLDER"],
         exist_ok=True
     )
 
