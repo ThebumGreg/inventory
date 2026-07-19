@@ -48,25 +48,23 @@ def upload_photo():
         return {"error": "No photo"}, 400
 
     photo = request.files["photo"]
+    iphone_path = request.form["iphone_path"]
 
-    #filename = secure_filename(photo.filename)
-    filename = photo.filename
+    relative_path = iphone_path.removeprefix("iCloudDrive/Shortcuts/")
+
+    _, extension = os.path.splitext(photo.filename)
+    relative_path += extension
+
 
     filepath = os.path.join(
         current_app.config["WORKLOG_UPLOAD_FOLDER"],
-        filename
+        relative_path
     )
+
+    os.makedirs(os.path.dirname(filepath), exist_ok=True)
 
     photo.save(filepath)
 
-
-    #filename = f"{uuid.uuid4()}_{filename}"
-
-    #filepath = os.path.join(WORKLOG_UPLOAD_FOLDER, filename)
-
-    #photo.save(filepath)
-
     return {
-        "success": True,
-        "filename": filename
+        "success": True
     }
